@@ -116,3 +116,13 @@ ssh -T git@github.com
 git clone xxxxxxxx
 
 ```
+
+# git push时出现了网络问题
+> fatal: unable to access 'https://github.com/cyzroot-jpg/KnowledgeRepo.git/': Failed to connect to github.com port 443 after 21034 ms: Could not connect to server
+
+```bash
+原因是我使用了vnp导致，开过代理导致的本机系统端口号和 git的端口号不一致导致的。
+
+关闭代理即可
+
+```
