@@ -89,3 +89,30 @@
 
 ```
 
+# GitHub配置SSH密钥
+
+> 密码/Token 是你“背诵”的门禁密码（会被别人偷看），SSH 密钥是你“持有”的加密门禁卡（数学芯片无法复制）。
+
+```bash
+1. windows打开Git Bash
+ssh-keygen -t rsa -b 4096 -C "github的注册邮箱"
+生成完成后，该目录下就会出现两个文件：id_rsa（私钥）和 id_rsa.pub（公钥）。
+
+2. 复制公钥内容
+cat ~/.ssh/id_rsa.pub
+
+3. 将公钥添加到GitHub中
+- 登录github，点击设置
+- 菜单中的SSH and GPG keys
+- 点击New SSH Key
+- Title 随便填， Key粘贴刚才复制的内容
+- 点击Add SSH Key
+
+4. 测试连接
+ssh -T git@github.com
+如果看到 Hi 用户名! You've successfully authenticated...，说明大功告成。
+
+5. 重新执行克隆
+git clone xxxxxxxx
+
+```
