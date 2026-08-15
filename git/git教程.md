@@ -126,3 +126,215 @@ git clone xxxxxxxx
 关闭代理即可
 
 ```
+
+# Git的基本结构
+
+```bash
+基本流程：
+
+本地工作区
+    ↓
+本地 Git 仓库
+    ↓ push
+GitHub 远程仓库
+
+
+```
+
+**什么是main分支**
+
+```bash
+
+main 是一个 Git 分支。
+
+可以理解成：
+当前项目的一条主要开发历史。
+多人协作项目中，通常不会让所有人直接修改 main。
+
+```
+
+**本地 main 和 GitHub main 不是实时同步的**
+
+```bash
+
+这是 Git 很重要的设计。
+
+例如一开始：
+
+本地 main：
+A
+
+
+GitHub main：
+A
+
+两边一样。
+
+
+
+
+GitHub 有人提交
+
+GitHub：
+
+A → B
+
+但是你的电脑不会自动变化。
+
+所以现在：
+
+本地 main：
+A
+
+
+GitHub main：
+A → B
+
+此时：
+本地 main 和 GitHub main 不一致是正常的。
+
+```
+
+
+**git pull 是干什么的**
+
+```bash
+git pull origin main
+作用：从 GitHub 获取最新代码，并整合到本地。
+
+
+```
+
+**什么叫分叉（diverged）**
+两个分支原本有共同的历史，但从某个提交开始，各自产生了不同的提交。
+```bash
+
+共同历史
+    A
+   / \
+  B   C
+
+B = GitHub 的提交
+C = 本地的提交
+
+就叫：
+本地分支和远程分支发生分叉（diverged）。
+
+Git 会提示：
+Your branch and 'origin/main' have diverged
+
+
+
+你和 GitHub 原本共同到：
+
+2f12d15
+
+然后发生了：
+
+                 2f12d15
+                    │
+           ┌────────┴────────┐
+           ↓                 ↓
+       你的本地            GitHub
+           ↓                 ↓
+       c64acc0            6e73dd8
+    Python文档               ↓
+                          309d447
+                             ↓
+                            ...
+                             ↓
+                          5e15e55
+
+这就是分叉。
+```
+
+
+** pull request  PR**
+
+```bash
+
+Pull Request 的意思：
+请求把我的分支合并到 main。
+
+
+推送到 GitHub 后：
+
+feature/python-doc
+        ↓
+Pull Request
+        ↓
+main
+
+```
+
+
+**标准多人协作流程**
+
+```bash
+
+① 获取最新 main
+        ↓
+② 创建自己的分支
+        ↓
+③ 修改代码
+        ↓
+④ git add
+        ↓
+⑤ git commit
+        ↓
+⑥ git push 自己的分支
+        ↓
+⑦ 创建 Pull Request
+        ↓
+⑧ Code Review
+        ↓
+⑨ Merge 到 main
+
+```
+
+# Git 命令
+## 1. git status
+
+```bash
+
+git status
+查看当前：
+
+当前分支
+是否有未提交修改
+哪些文件被修改
+哪些文件未被 Git 跟踪
+是否领先/落后远程
+
+```
+
+## 2. 查看提交历史
+
+```bash
+
+git log --oneline --decorate --graph --all
+这个命令非常适合查看：
+
+本地和远程到底发生了什么。
+```
+
+## 3. git fetch
+
+```bash
+
+git fetch origin
+作用：获取 GitHub 的最新提交，但不自动合并到当前分支。
+
+可以理解成：
+
+GitHub
+  ↓
+fetch
+  ↓
+origin/main
+
+你的本地 main 暂时不会改变。
+
+这比 pull 更安全，适合先看看远程发生了什么。
+
+```
