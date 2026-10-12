@@ -14,3 +14,15 @@ X 经过任何确定性变换（线性、激活、加层、升维……），关
 神经元越多、层数越深，折痕越多，区域越细；
 输出层再把这些区域的类别组合起来，得到一条分段线性的分类边界，
 从而把不同的信息分隔开。折痕摆得「好不好」由训练决定。
+
+
+KV Cache就是将prefill的KV以及decoding后面生成的新的token的KV都进行缓存。
+首先，prefill阶段先进行并行的处理，每一层在计算完KV后都会进行缓存，然后在进行计算注意力的时候从缓存中加载缓存的KV，进行计算。在进入decoding之后，每次生成新的token的KV也是继续缓存。
+缓存的布局的形状：
+K_cache: [num_layers, batch, num_kv_heads, seq_len, head_dim]
+V_cache: [num_layers, batch, num_kv_heads, seq_len, head_dim]
+KV Cache 和权重在同一个地方——显存 HBM，是一块 GPU 上的张量。计算注意力时，才把需要的部分从 HBM 读到计算核心（SM 片上）——用完之后片上不保留。
+KV Cache 不是哈希缓存，它就是一块张量，注意力计算用索引直接定位，不存在「找不找得到」的问题。
+索引 = *(层, 序列, 头, 位置)*：
+K_cache[layer, seq_id, kv_head, 0:length, :]   ← 直接切片读取
+V_cache[layer, seq_id, kv_head, 0:length, :]
