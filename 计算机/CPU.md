@@ -309,3 +309,23 @@ numactl --physcpubind=64-95 bash -c 'grep Cpus_allowed_list /proc/self/status'  
 # 内存落点统计（需权限）
 numastat
 ```
+
+
+## wall time
+
+Wall 时间（墙钟时间 / wall-clock time）指的是真实流逝的时间，也就是从墙上挂钟能看到的时间——从程序开始到结束实际经过的时长，包括等待 I/O、休眠、被调度暂停等所有时间。
+对比几个概念：
+- Wall time：现实世界流逝的时间（比如你看了下手表，过了 5 秒）。
+- CPU time：进程实际占用 CPU 的时间，可细分为 user time（用户态）和 sys time（内核态）。
+- Wall time ≠ CPU time：如果程序大部分时间在等待网络/磁盘，wall time 会远大于 CPU time；如果是多线程并行，CPU time 可能大于 wall time。
+常见用途：性能测试中 time 命令、/usr/bin/time 的输出，以及 Linux 的 CLOCK_MONOTONIC / gettimeofday 测量的都是 wall time。
+
+- 测响应时间/延迟（latency）、吞吐（throughput/QPS） → 基本都用 wall time。比如压测工具（JMeter、wrk、ab）统计的响应耗时、每秒请求数，都是墙钟时间。
+- 测 CPU 密集度、算法效率 → 常用 CPU time。因为想排除 I/O 等待和调度噪声，看代码本身花了多少 CPU。
+- 基准测试框架会两者都用，例如：
+- Go 的 testing.B 默认报告 wall time（ns/op），但也提供 -cpuprofile、-benchmem。
+- JMH 同时报告 wall time、CPU time、GC 时间。
+- perf stat 会同时给出 task-clock（CPU time）和 elapsed（wall time）。
+为什么压测多用 wall time：用户真正感知的是"我发了请求多久拿到响应"，这才是业务关心的延迟，包含了排队、网络、等待等所有环节。
+什么时候必须用 CPU time：多线程/多核场景下，wall time 无法反映总计算量（4 核跑满 10 秒，wall 是 10s 但 CPU time 是 40s）；或者被测代码有很大时间在 sleep/等待，用 wall time 会失真。
+简单记：面向用户/系统的端到端性能 → wall time；面向代码本身的效率 → CPU time。
