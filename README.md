@@ -24,8 +24,6 @@
 
 ## 📂 目录结构
 
-> 该目录树由 GitHub Action 自动生成，请勿手动修改。
-
 <!-- TREE:START -->
 ```
 KnowledgeRepo/
