@@ -27,9 +27,6 @@
 <!-- TREE:START -->
 ```
 KnowledgeRepo/
-├── 计算机/
-│   ├── CPU.md
-│   └── GPU.md
 ├── C++/
 │   └── C++.md
 ├── deeplearn/
@@ -37,9 +34,9 @@ KnowledgeRepo/
 ├── Docker/
 │   └── docker.md
 ├── git/
-│   ├── git 合并与冲突.md
 │   ├── git push.md
 │   ├── git rebase.md
+│   ├── git 合并与冲突.md
 │   ├── git.md
 │   ├── git冲突检查.md
 │   └── git教程.md
@@ -56,17 +53,22 @@ KnowledgeRepo/
 │       ├── opencode.md
 │       └── opencodeUnde.md
 ├── opertor/
-│   ├── 优化.md
 │   ├── arc.md
 │   ├── GUIDE_FIRST_OPERATOR.md
 │   ├── model_适配.md
-│   └── operator_dev.md
+│   ├── operator_dev.md
+│   └── 优化.md
 ├── Python/
+│   └── python.md
+├── python/
 │   └── python.md
 ├── skill编写/
 │   └── skill编写教程.md
 ├── Win安装opencode及连接微信/
 │   └── Win安装opencode及连接微信.md
+├── 计算机/
+│   ├── CPU.md
+│   └── GPU.md
 └── README.md
 ```
 <!-- TREE:END -->
