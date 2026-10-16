@@ -23,25 +23,55 @@
 ---
 
 ## 📂 目录结构
-```json
-KnowledgeRepo/
-├── Docker/ # 🐳 Docker 学习笔记
-│ ├── docker.md # Docker 基础与实战
-│ └── images/ # 相关截图与示意图
-├── git/ # 📦 Git 版本控制
-│ └── git教程.md # Git 使用教程与常见问题
-├── npm/ # 📦 npm 包管理
-│ └── npm.md # npm 使用指南
-├── opencode/ # 🤖 OpenCode 开源项目学习
-│ └── opencode.md # OpenCode Agent 学习文档
-├── skill编写/ # 🛠️ Skill 开发
-│ └── skill编写教程.md # Skill 编写指南
-└── Win安装opencode及连接微信/ # 💻 实战专题
-└── ... # Windows 环境配置与微信对接
-└──C++
-  └──C++.md  # C++教程文档
 
+> 该目录树由 GitHub Action 自动生成，请勿手动修改。
+
+<!-- TREE:START -->
 ```
+KnowledgeRepo/
+├── 计算机/
+│   ├── CPU.md
+│   └── GPU.md
+├── C++/
+│   └── C++.md
+├── deeplearn/
+│   └── dp.md
+├── Docker/
+│   └── docker.md
+├── git/
+│   ├── git 合并与冲突.md
+│   ├── git push.md
+│   ├── git rebase.md
+│   ├── git.md
+│   ├── git冲突检查.md
+│   └── git教程.md
+├── linux/
+│   └── linux.md
+├── llm/
+│   └── llm.md
+├── npm/
+│   └── npm.md
+├── opencode/
+│   └── opencode.md
+├── openprojectL/
+│   └── opencode/
+│       ├── opencode.md
+│       └── opencodeUnde.md
+├── opertor/
+│   ├── 优化.md
+│   ├── arc.md
+│   ├── GUIDE_FIRST_OPERATOR.md
+│   ├── model_适配.md
+│   └── operator_dev.md
+├── Python/
+│   └── python.md
+├── skill编写/
+│   └── skill编写教程.md
+├── Win安装opencode及连接微信/
+│   └── Win安装opencode及连接微信.md
+└── README.md
+```
+<!-- TREE:END -->
 
 
 ---
