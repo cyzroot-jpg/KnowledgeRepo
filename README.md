@@ -43,7 +43,8 @@ KnowledgeRepo/
 ├── linux/
 │   └── linux.md
 ├── llm/
-│   └── llm.md
+│   ├── llm.md
+│   └── vllm的插件机制.md
 ├── npm/
 │   └── npm.md
 ├── opencode/
@@ -59,8 +60,6 @@ KnowledgeRepo/
 │   ├── operator_dev.md
 │   └── 优化.md
 ├── Python/
-│   └── python.md
-├── python/
 │   └── python.md
 ├── skill编写/
 │   └── skill编写教程.md
