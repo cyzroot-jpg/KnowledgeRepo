@@ -742,3 +742,15 @@ site-packages/                          # 装到环境里
 生成 mygreet.egg-info/ 的目的是：在构建/安装前，把项目配置解析成一份可供构建工具和安装器读取的元数据快照——用来给 pip 提前判断依赖、给 sdist 提供文件清单、支撑可编辑安装，并让工具不导入代码也能查到包信息。它是 setuptools 的构建中间产物（可编辑安装时需要保留）。
 
 两份 egg-info 内容相同，但一份是你本地的构建中间产物（可删、应 gitignore），另一份是被有意打进 sdist、随源码包分发给别人的内容。就像源码文件在工作和 sdist 里各有一份一样——不是多余，而是"交付需要自包含"。
+
+## pip install xx.whl
+pip install xx.whl 会把 wheel 解包到 site-packages，并生成一套 .dist-info/ "说明书"（METADATA、entry_points.txt、WHEEL、RECORD、INSTALLER、direct_url.json 等），再按 entry_points 在 bin/ 生成可执行启动器、编译 .pyc、装依赖、写 RECORD 记账。 其中 entry_points.txt 是"插件被发现的依据"，RECORD 是"卸载的依据"；而 Python 判断"装没装"只看磁盘上有没有 .dist-info——这就是安装带来的全部实质变化。
+
+## pip install and pip uninstall
+pip install xx.whl
+  → 解包代码 + 写 .dist-info(含 entry_points.txt) + 生成 bin/命令
+  → 于是: import 得动、命令敲得、插件被发现
+
+pip uninstall xx
+  → 按 RECORD 逐个删文件 + 删 .dist-info
+  → 于是: import 不到、命令没了、插件消失
