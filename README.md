@@ -43,6 +43,20 @@ KnowledgeRepo/
 ├── linux/
 │   └── linux.md
 ├── llm/
+│   ├── 0-1llm/
+│   │   ├── chapters/
+│   │   │   ├── 00_overview.md
+│   │   │   ├── 01_tokenizer.md
+│   │   │   ├── 02_data.md
+│   │   │   ├── 03_bigram.md
+│   │   │   ├── 04_attention.md
+│   │   │   ├── 05_transformer.md
+│   │   │   ├── 06_training.md
+│   │   │   ├── 07_generation.md
+│   │   │   ├── 08_modern.md
+│   │   │   └── 09_next_steps.md
+│   │   ├── 0-1llm.md
+│   │   └── README.md
 │   └── llm.md
 ├── npm/
 │   └── npm.md
@@ -96,6 +110,12 @@ Node.js 包管理工具 npm 的使用笔记，包括常用命令、配置优化�
 
 - 📄 [`npm.md`](./npm/npm.md) — npm 使用指南
 
+### 🐍 Python 面向对象
+
+从类与对象一路写到完整项目的 Python OOP 手把手课程，覆盖封装、继承、多态、组合、魔术方法、dataclass、异常、协议与测试。
+
+- 📄 [`oop/README.md`](./Python/oop/README.md) — Python 面向对象课程首页
+
 ### 🤖 OpenCode
 
 OpenCode 开源项目的学习记录，聚焦 Agent 机制的原理与实践。
@@ -107,6 +127,12 @@ OpenCode 开源项目的学习记录，聚焦 Agent 机制的原理与实践。
 Skill（技能）开发的相关教程与经验总结。
 
 - 📄 [`skill编写教程.md`](./skill编写/skill编写教程.md) — Skill 编写完整指南
+
+### 🧠 LLM 从 0 到 1
+
+从零实现并训练一个字符级 GPT 的手把手课程，覆盖分词、数据、注意力、Transformer、训练、生成与现代改进。
+
+- 📄 [`0-1llm/README.md`](./llm/0-1llm/README.md) — 课程首页与学习路线
 
 ### 💻 Windows 安装 OpenCode 及连接微信
 
@@ -124,6 +150,7 @@ Skill（技能）开发的相关教程与经验总结。
 | 版本控制 | Git |
 | 包管理 | npm |
 | 开源项目 | OpenCode |
+| 深度学习 | PyTorch |
 | 开发环境 | Windows |
 | 编程语言 | C/C++ |
 
@@ -133,6 +160,8 @@ Skill（技能）开发的相关教程与经验总结。
 
 | 日期 | 更新内容 |
 |------|----------|
+| 2026-10-26 | 新增「Python 面向对象」手把手课程：类与实例、封装、继承、组合、魔术方法、dataclass、异常、协议、完整项目与测试 |
+| 2026-10-26 | 新增「从 0 构建一个 LLM」手把手课程：分词、注意力、Transformer、训练与生成 |
 | 2026-08-08 | 添加 Git 代理网络问题解决方案；新增 npm 文档 |
 | 2026-08-07 | 首次提交：Docker、Git、OpenCode、Skill 编写、Windows 安装 OpenCode 及连接微信 |
 | 2026-08-09 | 首次提交：C++教程文档 |
