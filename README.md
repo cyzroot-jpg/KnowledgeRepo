@@ -43,6 +43,7 @@ KnowledgeRepo/
 ├── linux/
 │   └── linux.md
 ├── llm/
+<<<<<<< HEAD
 │   ├── 0-1llm/
 │   │   ├── chapters/
 │   │   │   ├── 00_overview.md
@@ -58,6 +59,10 @@ KnowledgeRepo/
 │   │   ├── 0-1llm.md
 │   │   └── README.md
 │   └── llm.md
+=======
+│   ├── llm.md
+│   └── vllm的插件机制.md
+>>>>>>> bb057e26b1966a91dfab21ea941492d06522bd60
 ├── npm/
 │   └── npm.md
 ├── opencode/
@@ -73,8 +78,6 @@ KnowledgeRepo/
 │   ├── operator_dev.md
 │   └── 优化.md
 ├── Python/
-│   └── python.md
-├── python/
 │   └── python.md
 ├── skill编写/
 │   └── skill编写教程.md

@@ -83,3 +83,6 @@ ModelRegistry.register_model(
     "tecovllm_models.models.qwen3_dense:Qwen3DenseForCausalLM", # ② 值：类的位置
 )
 基本正确——核心就是往字典里塞一条 self.models[model_arch] = model。没有复杂操作。
+
+
+## VLLM是如何进行读取插件的
