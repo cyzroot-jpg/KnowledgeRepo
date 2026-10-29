@@ -43,7 +43,6 @@ KnowledgeRepo/
 ├── linux/
 │   └── linux.md
 ├── llm/
-<<<<<<< HEAD
 │   ├── 0-1llm/
 │   │   ├── chapters/
 │   │   │   ├── 00_overview.md
@@ -58,11 +57,9 @@ KnowledgeRepo/
 │   │   │   └── 09_next_steps.md
 │   │   ├── 0-1llm.md
 │   │   └── README.md
-│   └── llm.md
-=======
 │   ├── llm.md
+│   ├── suanzi.md
 │   └── vllm的插件机制.md
->>>>>>> bb057e26b1966a91dfab21ea941492d06522bd60
 ├── npm/
 │   └── npm.md
 ├── opencode/
@@ -78,6 +75,23 @@ KnowledgeRepo/
 │   ├── operator_dev.md
 │   └── 优化.md
 ├── Python/
+│   ├── dict/
+│   │   └── dict.md
+│   ├── oop/
+│   │   ├── chapters/
+│   │   │   ├── 00_mental_model.md
+│   │   │   ├── 01_class_and_instance.md
+│   │   │   ├── 02_encapsulation.md
+│   │   │   ├── 03_inheritance.md
+│   │   │   ├── 04_composition.md
+│   │   │   ├── 05_magic_methods.md
+│   │   │   ├── 06_classmethod_dataclass.md
+│   │   │   ├── 07_errors_protocols.md
+│   │   │   ├── 08_project.md
+│   │   │   └── 09_testing_next.md
+│   │   └── README.md
+│   ├── 打包/
+│   │   └── pyproject文件说明.md
 │   └── python.md
 ├── skill编写/
 │   └── skill编写教程.md
