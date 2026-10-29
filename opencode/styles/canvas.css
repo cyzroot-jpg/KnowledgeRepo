@@ -1,0 +1,227 @@
+.canvas-panel {
+  padding: 8px;
+}
+
+.canvas {
+  width: 100%;
+  overflow: hidden;
+}
+
+.canvas-scroll {
+  position: relative;
+  overflow: auto;
+  scrollbar-width: thin;
+}
+
+.canvas-scroll::-webkit-scrollbar {
+  height: 8px;
+  width: 8px;
+}
+
+.canvas-scroll::-webkit-scrollbar-thumb {
+  background: #22304a;
+  border-radius: 8px;
+}
+
+.canvas-stage {
+  position: relative;
+  transform-origin: top left;
+}
+
+.canvas-edges {
+  position: absolute;
+  top: 0;
+  left: 0;
+  overflow: visible;
+  pointer-events: none;
+}
+
+/* ---------- 分层配色 ---------- */
+
+[data-layer="client"] {
+  --layer: var(--c-client);
+}
+
+[data-layer="server"] {
+  --layer: var(--c-server);
+}
+
+[data-layer="session"] {
+  --layer: var(--c-session);
+}
+
+[data-layer="execution"] {
+  --layer: var(--c-execution);
+}
+
+[data-layer="context"] {
+  --layer: var(--c-context);
+}
+
+[data-layer="ai"] {
+  --layer: var(--c-ai);
+}
+
+/* ---------- 连线 ---------- */
+
+.edge path {
+  fill: none;
+  stroke: rgba(147, 167, 191, 0.22);
+  stroke-width: 1.4;
+  transition: stroke 0.3s ease;
+}
+
+.edge.is-active {
+  color: var(--layer);
+}
+
+.edge.is-active path {
+  stroke: var(--layer);
+  stroke-width: 2.1;
+  stroke-dasharray: 7 7;
+  animation: dash-flow 0.9s linear infinite;
+  filter: drop-shadow(0 0 4px rgba(255, 255, 255, 0.12));
+}
+
+@keyframes dash-flow {
+  to {
+    stroke-dashoffset: -28;
+  }
+}
+
+.packet {
+  fill: var(--layer);
+  filter: drop-shadow(0 0 6px var(--layer));
+}
+
+.edge-label {
+  font-family: var(--sans);
+  font-size: 11px;
+  fill: #e6eefb;
+  text-anchor: middle;
+  paint-order: stroke;
+  stroke: #0b0f14;
+  stroke-width: 4px;
+  stroke-linejoin: round;
+}
+
+/* ---------- 节点卡片 ---------- */
+
+.node {
+  position: absolute;
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+  gap: 3px;
+  padding: 6px 8px;
+  background: var(--card-2);
+  border: 1px solid var(--border);
+  border-radius: 10px;
+  text-align: left;
+  cursor: pointer;
+  transition: opacity 0.25s ease, border-color 0.25s ease, box-shadow 0.25s ease,
+    transform 0.25s ease;
+}
+
+.node-head {
+  display: flex;
+  align-items: center;
+  gap: 6px;
+  min-width: 0;
+}
+
+.node-code {
+  font-family: var(--mono);
+  font-size: 10px;
+  letter-spacing: 0.5px;
+  color: var(--layer);
+  background: rgba(255, 255, 255, 0.06);
+  border-radius: 4px;
+  padding: 1px 4px;
+  flex: none;
+}
+
+.node-name {
+  font-size: 12px;
+  font-weight: 600;
+  white-space: nowrap;
+  overflow: hidden;
+  text-overflow: ellipsis;
+}
+
+.node-role {
+  font-size: 10.5px;
+  line-height: 1.3;
+  color: var(--text-mute);
+  display: -webkit-box;
+  -webkit-line-clamp: 2;
+  -webkit-box-orient: vertical;
+  overflow: hidden;
+}
+
+.node-check {
+  margin-left: auto;
+  font-size: 10px;
+  color: var(--c-context);
+}
+
+.node[data-state="idle"] {
+  opacity: 0.42;
+}
+
+.node[data-state="done"] {
+  opacity: 0.9;
+  border-color: var(--layer);
+}
+
+.node[data-state="active"] {
+  opacity: 1;
+  border-color: var(--layer);
+  box-shadow: 0 0 0 1px var(--layer), 0 0 22px -6px var(--layer);
+  animation: node-pulse 1.9s ease-in-out infinite;
+}
+
+@keyframes node-pulse {
+  0%,
+  100% {
+    box-shadow: 0 0 0 1px var(--layer), 0 0 22px -6px var(--layer);
+  }
+  50% {
+    box-shadow: 0 0 0 1px var(--layer), 0 0 30px -2px var(--layer);
+  }
+}
+
+.node[data-selected="true"] {
+  outline: 2px dashed var(--accent);
+  outline-offset: 2px;
+  opacity: 1;
+}
+
+.node[data-focus="true"] {
+  outline: 2px solid #ffffff;
+  outline-offset: 2px;
+  opacity: 1;
+}
+
+.node:hover {
+  opacity: 1;
+  transform: translateY(-1px);
+}
+
+/* ---------- 减少动画 ---------- */
+
+@media (prefers-reduced-motion: reduce) {
+  .edge.is-active path {
+    animation: none;
+    stroke-dasharray: none;
+    stroke-width: 2.4;
+  }
+
+  .node[data-state="active"] {
+    animation: none;
+  }
+
+  .node:hover {
+    transform: none;
+  }
+}

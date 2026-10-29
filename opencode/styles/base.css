@@ -1,0 +1,355 @@
+:root {
+  --bg: #0b0f14;
+  --bg-soft: #0f151d;
+  --card: #121821;
+  --card-2: #151d27;
+  --border: #233041;
+  --border-soft: #1b2534;
+  --text: #dbe4f0;
+  --text-dim: #93a7bf;
+  --text-mute: #6b7f97;
+  --accent: #4ea8ff;
+
+  --c-client: #22d3ee;
+  --c-server: #60a5fa;
+  --c-session: #a78bfa;
+  --c-execution: #fbbf24;
+  --c-context: #34d399;
+  --c-ai: #fb923c;
+
+  --mono: ui-monospace, SFMono-Regular, "SF Mono", "JetBrains Mono", Menlo, Consolas,
+    "Liberation Mono", monospace;
+  --sans: -apple-system, BlinkMacSystemFont, "Segoe UI", "PingFang SC", "Hiragino Sans GB",
+    "Microsoft YaHei", "Noto Sans CJK SC", sans-serif;
+}
+
+* {
+  box-sizing: border-box;
+}
+
+html,
+body {
+  margin: 0;
+  padding: 0;
+  background: var(--bg);
+  color: var(--text);
+  font-family: var(--sans);
+  font-size: 14px;
+  line-height: 1.55;
+  -webkit-font-smoothing: antialiased;
+}
+
+body {
+  background-image: radial-gradient(circle at 15% -10%, rgba(78, 168, 255, 0.08), transparent 45%),
+    radial-gradient(circle at 85% 0%, rgba(167, 139, 250, 0.07), transparent 40%);
+  background-attachment: fixed;
+}
+
+code,
+pre,
+.mono {
+  font-family: var(--mono);
+}
+
+button {
+  font-family: inherit;
+  color: inherit;
+}
+
+.app {
+  max-width: 1500px;
+  margin: 0 auto;
+  padding: 20px 20px 40px;
+  display: flex;
+  flex-direction: column;
+  gap: 16px;
+}
+
+.app-header {
+  display: flex;
+  flex-wrap: wrap;
+  gap: 12px;
+  align-items: flex-end;
+  justify-content: space-between;
+}
+
+.app-header h1 {
+  margin: 0;
+  font-size: 20px;
+  letter-spacing: 0.2px;
+}
+
+.app-sub {
+  margin: 4px 0 0;
+  color: var(--text-dim);
+  font-size: 13px;
+  max-width: 70ch;
+}
+
+.legend {
+  display: flex;
+  flex-wrap: wrap;
+  gap: 10px 14px;
+  font-size: 12px;
+  color: var(--text-dim);
+}
+
+.legend-item {
+  display: inline-flex;
+  align-items: center;
+  gap: 6px;
+}
+
+.legend-item i {
+  width: 10px;
+  height: 10px;
+  border-radius: 3px;
+  display: inline-block;
+}
+
+/* ---------- 命令输入区 ---------- */
+
+.composer {
+  background: var(--card);
+  border: 1px solid var(--border);
+  border-radius: 12px;
+  padding: 14px;
+}
+
+.composer-row {
+  display: flex;
+  gap: 10px;
+  flex-wrap: wrap;
+}
+
+.composer-input {
+  flex: 1 1 320px;
+  min-width: 0;
+  background: var(--bg-soft);
+  border: 1px solid var(--border);
+  border-radius: 8px;
+  padding: 10px 12px;
+  color: var(--text);
+  font-size: 14px;
+  outline: none;
+}
+
+.composer-input:focus {
+  border-color: var(--accent);
+  box-shadow: 0 0 0 3px rgba(78, 168, 255, 0.14);
+}
+
+.composer-chips {
+  display: flex;
+  flex-wrap: wrap;
+  gap: 8px;
+  margin-top: 10px;
+}
+
+.chip {
+  background: transparent;
+  border: 1px dashed var(--border);
+  color: var(--text-dim);
+  border-radius: 999px;
+  padding: 4px 12px;
+  font-size: 12px;
+  cursor: pointer;
+}
+
+.chip:hover {
+  border-color: var(--accent);
+  color: var(--text);
+}
+
+.chip[data-active="true"] {
+  border-style: solid;
+  border-color: var(--accent);
+  color: var(--text);
+  background: rgba(78, 168, 255, 0.1);
+}
+
+.composer-note {
+  margin: 10px 0 0;
+  font-size: 12px;
+  color: var(--text-mute);
+}
+
+.composer-note code {
+  color: var(--c-context);
+  font-size: 12px;
+}
+
+.composer-preview {
+  margin-left: 6px;
+  color: var(--text-dim);
+}
+
+/* ---------- 控制条 ---------- */
+
+.controls {
+  display: flex;
+  flex-wrap: wrap;
+  align-items: center;
+  gap: 10px 18px;
+  background: var(--card);
+  border: 1px solid var(--border);
+  border-radius: 12px;
+  padding: 10px 14px;
+}
+
+.controls-cluster {
+  display: flex;
+  align-items: center;
+  gap: 8px;
+}
+
+.controls-label {
+  font-size: 12px;
+  color: var(--text-mute);
+}
+
+.controls-hint {
+  margin-left: auto;
+  font-size: 12px;
+  color: var(--text-mute);
+}
+
+.btn {
+  background: var(--card-2);
+  border: 1px solid var(--border);
+  color: var(--text);
+  border-radius: 8px;
+  padding: 7px 14px;
+  font-size: 13px;
+  cursor: pointer;
+  transition: border-color 0.15s ease, background 0.15s ease;
+}
+
+.btn:hover:not(:disabled) {
+  border-color: var(--accent);
+}
+
+.btn:disabled {
+  opacity: 0.45;
+  cursor: not-allowed;
+}
+
+.btn-primary {
+  background: rgba(78, 168, 255, 0.16);
+  border-color: rgba(78, 168, 255, 0.5);
+  color: #cfe6ff;
+}
+
+.btn-small {
+  padding: 4px 10px;
+  font-size: 12px;
+}
+
+.btn-small[data-active="true"] {
+  border-color: var(--accent);
+  background: rgba(78, 168, 255, 0.18);
+  color: #cfe6ff;
+}
+
+.btn-ghost {
+  background: transparent;
+}
+
+.btn-run {
+  white-space: nowrap;
+}
+
+/* 开关 */
+
+.switch {
+  display: inline-flex;
+  align-items: center;
+  gap: 8px;
+  cursor: pointer;
+  user-select: none;
+  font-size: 12px;
+  color: var(--text-dim);
+}
+
+.switch input {
+  position: absolute;
+  opacity: 0;
+  width: 0;
+  height: 0;
+}
+
+.switch-track {
+  width: 34px;
+  height: 18px;
+  border-radius: 999px;
+  background: #1c2534;
+  border: 1px solid var(--border);
+  position: relative;
+  transition: background 0.18s ease, border-color 0.18s ease;
+}
+
+.switch-thumb {
+  position: absolute;
+  top: 2px;
+  left: 2px;
+  width: 12px;
+  height: 12px;
+  border-radius: 50%;
+  background: var(--text-mute);
+  transition: transform 0.18s ease, background 0.18s ease;
+}
+
+.switch[data-active="true"] .switch-track {
+  background: rgba(78, 168, 255, 0.25);
+  border-color: var(--accent);
+}
+
+.switch[data-active="true"] .switch-thumb {
+  transform: translateX(16px);
+  background: var(--accent);
+}
+
+.switch input:focus-visible + .switch-track {
+  box-shadow: 0 0 0 3px rgba(78, 168, 255, 0.2);
+}
+
+.switch[data-active="true"] .switch-text {
+  color: var(--text);
+}
+
+/* ---------- 主体两栏 ---------- */
+
+.stage-grid {
+  display: grid;
+  grid-template-columns: 65fr 35fr;
+  gap: 16px;
+  align-items: start;
+}
+
+.panel {
+  background: var(--card);
+  border: 1px solid var(--border);
+  border-radius: 12px;
+  overflow: hidden;
+}
+
+@media (max-width: 1024px) {
+  .stage-grid {
+    grid-template-columns: 1fr;
+  }
+
+  .controls-hint {
+    margin-left: 0;
+    width: 100%;
+  }
+}
+
+@media (max-width: 640px) {
+  .app {
+    padding: 14px 12px 32px;
+  }
+
+  .app-header h1 {
+    font-size: 17px;
+  }
+}
